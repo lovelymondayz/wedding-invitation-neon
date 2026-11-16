@@ -6,8 +6,10 @@ One self-contained `index.html` — no build step, no backend, no database.
 
 **Stack:** vanilla HTML/CSS/JS, SVG bride/groom figures extruded into 3D with
 stacked CSS `translateZ` layers, glitch title, scroll-driven love-story scene,
-live countdown. All third-party assets (fonts) are vendored under `vendor/`, so
-the page renders with no external network access.
+live countdown, neon cursor glow, mouse parallax, shooting stars, drifting
+neon particles, 3D card tilt and a countdown pop. All third-party assets
+(fonts) are vendored under `vendor/`, so the page renders with no external
+network access.
 
 > This project is intentionally HTML-only. The fleet `CONSTITUTION.md` stack
 > rules (Go + Gin + pgx + PostgreSQL + React/TS/Tailwind) do not apply here.
@@ -33,9 +35,9 @@ Everything editable is inline in `index.html`:
   `Dharmein Hotel`.
 - Countdown target — the `2026-12-05T08:00:00+07:00` timestamp near the bottom.
 - Love-story chapters — the `#chap` blocks in the **Our Love Story** section.
-- Gift account — the `[Bank Name]`, account name and `4080184056` placeholders
-  in the **Wishes & Gift** section. **These are still placeholders — fill them
-  in before sharing the invitation.**
+- Gift account — the bank (currently `BCA`), account name and account number in
+  the **Wishes & Gift** section. **Confirm the account details before sharing
+  the invitation.**
 
 ## Deploy
 
