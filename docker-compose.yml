@@ -1,0 +1,13 @@
+services:
+  web:
+    container_name: wedding-invitation-neon
+    build: .
+    image: wedding-invitation-neon:latest
+    ports:
+      - "3015:80"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

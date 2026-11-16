@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>#EXActlyforALIFA — The Wedding of Alifa &amp; Daniel</title>
+<link rel="stylesheet" href="vendor/fonts.css">
+<style>
+:root{
+  --bg:#08030f; --bg2:#12061f; --purple:#a855f7; --violet:#7c3aed; --neon:#c084fc; --pink:#e879f9;
+  --maroon:#8a1538; --maroon2:#4a0a1e; --gold:#e6b95c; --ink:#f3e8ff; --dim:#b9a3d6;
+  --songket:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><rect width='28' height='28' fill='%234a0a1e'/><path d='M14 2 L26 14 L14 26 L2 14Z' fill='none' stroke='%23e6b95c' stroke-width='1.6'/><path d='M14 8 L20 14 L14 20 L8 14Z' fill='%237c3aed' opacity='.7'/><circle cx='14' cy='14' r='1.8' fill='%23e6b95c'/></svg>");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Rajdhani',system-ui,sans-serif;font-size:18px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+h1,h2,h3,.orb{font-family:'Orbitron',sans-serif;letter-spacing:.08em}
+section{position:relative}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+.center{text-align:center}
+
+/* ---------- background layers ---------- */
+.sky{position:absolute;inset:0;background:
+  radial-gradient(ellipse at 50% 0%,rgba(168,85,247,.35),transparent 60%),
+  radial-gradient(ellipse at 50% 100%,rgba(138,21,56,.35),transparent 55%),
+  linear-gradient(#0c0418,#1a0733 70%,#2a0a3d);overflow:hidden}
+.sun{position:absolute;left:50%;top:18%;width:min(46vw,420px);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;
+  background:linear-gradient(#f0abfc,#a855f7 45%,#8a1538);filter:blur(1px);opacity:.75;
+  -webkit-mask:repeating-linear-gradient(#000 0 14px,transparent 14px 18px);mask:repeating-linear-gradient(#000 0 14px,transparent 14px 18px);
+  box-shadow:0 0 120px #a855f7}
+.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;opacity:.95}
+.floor{position:absolute;left:-50%;right:-50%;bottom:0;height:34%;transform-origin:50% 100%;transform:perspective(380px) rotateX(62deg);
+  background:
+   linear-gradient(90deg,rgba(192,132,252,.55) 1px,transparent 1px) 0 0/60px 60px,
+   linear-gradient(0deg,rgba(192,132,252,.55) 1px,transparent 1px) 0 0/60px 60px;
+  animation:grid 3s linear infinite;-webkit-mask:linear-gradient(transparent,#000 60%);mask:linear-gradient(transparent,#000 60%)}
+@keyframes grid{to{background-position:0 60px,0 60px}}
+.stars i{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.7;animation:tw 3s infinite alternate}
+@keyframes tw{to{opacity:.1}}
+
+/* songket divider */
+.band{height:28px;background:var(--songket) repeat-x;border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);box-shadow:0 0 24px rgba(168,85,247,.6)}
+
+/* ---------- glitch title ---------- */
+.glitch{position:relative;display:inline-block;color:#fff;text-shadow:0 0 18px var(--purple),0 0 42px var(--violet)}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+.glitch::before{color:#ff4fd8;transform:translate(2px,0);clip-path:inset(0 0 60% 0);animation:gl 3.2s infinite steps(1)}
+.glitch::after{color:#46e8ff;transform:translate(-2px,0);clip-path:inset(60% 0 0 0);animation:gl 2.6s infinite steps(1) reverse}
+@keyframes gl{0%,88%{transform:translate(0)}90%{transform:translate(3px,-1px)}93%{transform:translate(-3px,1px)}96%{transform:translate(2px,0)}100%{transform:translate(0)}}
+
+/* ---------- HERO ---------- */
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:9vh;overflow:hidden}
+#hero .txt{position:relative;z-index:5;text-align:center;padding:0 18px}
+.eyebrow{font-family:'Orbitron';font-size:clamp(11px,2.4vw,14px);letter-spacing:.5em;color:var(--neon)}
+#hero h1{font-size:clamp(26px,7.2vw,74px);font-weight:900;margin:14px 0 6px;line-height:1.05}
+.tag{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,3vw,22px);color:#f5d0fe}
+.date{font-family:'Orbitron';font-size:clamp(22px,5vw,40px);margin:22px 0 14px;color:var(--gold);text-shadow:0 0 14px rgba(230,185,92,.6);letter-spacing:.25em}
+.btn{display:inline-block;font-family:'Orbitron';font-size:12px;letter-spacing:.3em;color:#fff;padding:12px 22px;border:1px solid var(--neon);
+  background:rgba(124,58,237,.18);border-radius:2px;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  box-shadow:0 0 22px rgba(168,85,247,.5) inset;cursor:pointer;transition:.25s;text-decoration:none}
+.btn:hover{background:rgba(168,85,247,.45);box-shadow:0 0 32px rgba(168,85,247,.9) inset}
+.duo{position:absolute;left:0;right:0;bottom:3vh;display:flex;justify-content:center;align-items:flex-end;gap:clamp(8px,6vw,80px);z-index:4;perspective:900px}
+.scrollhint{position:absolute;bottom:1.5vh;left:50%;transform:translateX(-50%);z-index:6;font-family:'Orbitron';font-size:10px;letter-spacing:.4em;color:var(--neon);animation:bob 1.6s infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* ---------- characters ---------- */
+.c{--h:min(46vh,420px);height:var(--h);aspect-ratio:200/420;perspective:900px;position:relative}
+.char3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateY(var(--ry,0deg))}
+.layer{position:absolute;inset:0}
+.layer svg{width:100%;height:100%;overflow:visible;display:block}
+.back svg{filter:brightness(.2) saturate(1.8) hue-rotate(8deg)}
+.front svg{filter:drop-shadow(0 0 6px rgba(192,132,252,.75)) drop-shadow(0 0 22px rgba(124,58,237,.5))}
+.idle{animation:idle 4s ease-in-out infinite}
+.idle.b{animation-delay:-2s}
+@keyframes idle{50%{transform:translateY(-8px)}}
+
+/* ---------- INVITE ---------- */
+.pad{padding:clamp(70px,12vh,130px) 0}
+.sec-bg{background:linear-gradient(#12061f,#0a0414)}
+h2.title{font-size:clamp(22px,5vw,42px);font-weight:700;margin-bottom:18px;color:#fff;text-shadow:0 0 18px var(--purple)}
+.lead{color:#e9d5ff;max-width:560px;margin:0 auto;font-size:clamp(17px,2.6vw,21px)}
+.bigdate{font-family:'Orbitron';font-size:clamp(20px,4.4vw,34px);color:var(--gold);margin:34px 0 10px;text-shadow:0 0 16px rgba(230,185,92,.5)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:32px}
+.card{position:relative;padding:28px 22px;background:linear-gradient(160deg,rgba(124,58,237,.18),rgba(138,21,56,.22));
+  border:1px solid rgba(192,132,252,.45);box-shadow:0 0 30px rgba(124,58,237,.25) inset,0 0 26px rgba(124,58,237,.2);
+  clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px)}
+.card::after{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--songket);opacity:.9}
+.card small{font-family:'Orbitron';letter-spacing:.3em;font-size:11px;color:var(--neon)}
+.card .t{font-family:'Orbitron';font-size:clamp(22px,4vw,30px);color:#fff;margin-top:8px}
+.card p{color:var(--dim)}
+.venue{margin-top:20px;padding:26px;border:1px dashed var(--gold);background:rgba(230,185,92,.05)}
+.venue b{font-family:'Orbitron';font-size:clamp(20px,4vw,28px);color:var(--gold);letter-spacing:.12em;display:block}
+.cd{display:flex;justify-content:center;gap:12px;margin-top:34px;flex-wrap:wrap}
+.cd div{min-width:74px;padding:12px 8px;border:1px solid rgba(192,132,252,.4);background:rgba(0,0,0,.35)}
+.cd b{display:block;font-family:'Orbitron';font-size:26px;color:#fff;text-shadow:0 0 12px var(--purple)}
+.cd span{font-size:11px;letter-spacing:.25em;color:var(--neon);font-family:'Orbitron'}
+
+/* ---------- COUPLE ---------- */
+#couple .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:46px}
+.person{text-align:center;position:relative}
+.person .c{--h:min(52vh,440px);margin:0 auto 6px}
+.stand{width:70%;height:18px;margin:-6px auto 14px;border-radius:50%;background:radial-gradient(ellipse,rgba(192,132,252,.7),transparent 70%);filter:blur(3px)}
+.role{font-family:'Orbitron';letter-spacing:.4em;font-size:12px;color:var(--neon)}
+.person h3{font-size:clamp(18px,3.2vw,28px);margin:8px 0;color:#fff;text-shadow:0 0 14px var(--purple)}
+.person p{color:var(--dim);font-size:clamp(15px,2.2vw,18px)}
+.person p b{color:#f5d0fe;font-weight:600}
+@media(max-width:640px){#couple .grid{gap:10px}.person .c{--h:34vh}}
+
+/* ---------- STORY (sticky scroll) ---------- */
+#story{height:560vh;background:#08030f}
+#story .stage{position:sticky;top:0;height:100svh;overflow:hidden}
+#story .ttl{position:absolute;top:5vh;left:0;right:0;text-align:center;z-index:6}
+#story .ttl .orb{font-size:clamp(14px,3vw,22px);letter-spacing:.5em;color:var(--neon)}
+.prog{width:min(260px,60vw);height:3px;background:rgba(255,255,255,.15);margin:12px auto 0}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--pink));box-shadow:0 0 12px var(--pink)}
+.chap{position:absolute;left:50%;top:17vh;transform:translateX(-50%);width:min(780px,90vw);text-align:center;z-index:6;min-height:30vh}
+.chap p{position:absolute;left:0;right:0;opacity:0;transform:translateY(24px) scale(.97);filter:blur(6px);transition:.7s cubic-bezier(.2,.8,.2,1);
+  font-size:clamp(19px,3.8vw,32px);line-height:1.4;color:#fff;text-shadow:0 0 20px rgba(168,85,247,.9)}
+.chap p.on{opacity:1;transform:none;filter:none}
+.chap p em{display:block;font-family:'Orbitron';font-style:normal;font-size:11px;letter-spacing:.5em;color:var(--gold);margin-bottom:14px}
+.chap p.last{font-family:'Orbitron';font-weight:900;font-size:clamp(24px,6vw,52px)}
+.pair{position:absolute;left:0;right:0;bottom:3vh;height:min(52vh,440px);z-index:4;perspective:1000px}
+.pair .c{--h:min(52vh,440px);position:absolute;left:50%;bottom:0;will-change:transform}
+.heart{position:absolute;left:50%;bottom:calc(min(52vh,440px) + 4vh);width:46px;height:42px;z-index:5;transform:translateX(-50%) scale(0);pointer-events:none}
+.heart svg{width:100%;height:100%;filter:drop-shadow(0 0 10px #e879f9) drop-shadow(0 0 24px #a855f7)}
+.fl{position:absolute;bottom:20vh;z-index:5;pointer-events:none;font-size:20px;color:#e879f9;text-shadow:0 0 12px #a855f7;animation:rise 4s linear forwards}
+@keyframes rise{from{transform:translateY(0) scale(.6);opacity:1}to{transform:translateY(-55vh) scale(1.3) rotate(20deg);opacity:0}}
+.beam{position:absolute;left:50%;bottom:0;width:min(60vw,520px);height:80%;transform:translateX(-50%);z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(232,121,249,.55),transparent 65%);opacity:0}
+
+/* ---------- GIFT ---------- */
+.acct{max-width:520px;margin:30px auto 0;padding:28px 22px;border:1px solid var(--gold);position:relative;
+  background:linear-gradient(135deg,rgba(138,21,56,.45),rgba(74,10,30,.6));box-shadow:0 0 36px rgba(230,185,92,.2)}
+.acct::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:var(--songket)}
+.acct dl{margin:14px 0 18px;text-align:left;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+.acct dt{color:var(--neon);font-family:'Orbitron';font-size:11px;letter-spacing:.2em;padding-top:5px}
+.acct dd{color:#fff;font-weight:600}
+.acct .no{font-family:'Orbitron';font-size:clamp(18px,4vw,24px);letter-spacing:.14em;color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,40px);opacity:0;background:#1a0733;border:1px solid var(--neon);padding:10px 20px;font-family:'Orbitron';font-size:12px;letter-spacing:.2em;z-index:99;transition:.4s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- FOOTER ---------- */
+#end{min-height:80vh;display:flex;align-items:center;overflow:hidden}
+#end .in{position:relative;z-index:5;width:100%}
+#end .duo{bottom:0}
+#end .txt{padding-bottom:36vh}
+#end .c{--h:min(34vh,300px)}
+.sign{font-family:'Orbitron';letter-spacing:.2em;color:var(--gold);margin-top:16px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- shared gradient / pattern defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="jm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b3204a"/><stop offset=".55" stop-color="#7a1030"/><stop offset="1" stop-color="#3f0818"/></linearGradient>
+    <linearGradient id="jm2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5e0b26"/><stop offset="1" stop-color="#8f1a40"/></linearGradient>
+    <linearGradient id="gown" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c02652"/><stop offset=".5" stop-color="#8a1538"/><stop offset="1" stop-color="#3a0716"/></linearGradient>
+    <linearGradient id="hj" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a81f4b"/><stop offset=".6" stop-color="#6a0f2d"/><stop offset="1" stop-color="#43123f"/></linearGradient>
+    <linearGradient id="hj2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2305c"/><stop offset="1" stop-color="#6a0f2d"/></linearGradient>
+    <radialGradient id="skin" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#f4c9a0"/><stop offset=".7" stop-color="#d9a074"/><stop offset="1" stop-color="#b8794f"/></radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b3"/><stop offset=".5" stop-color="#e6b95c"/><stop offset="1" stop-color="#a8761d"/></linearGradient>
+    <linearGradient id="pants" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a1050"/><stop offset="1" stop-color="#120626"/></linearGradient>
+    <pattern id="sk" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#4a1388"/>
+      <path d="M7 1 L13 7 L7 13 L1 7Z" fill="none" stroke="#e6b95c" stroke-width="1.1"/>
+      <circle cx="7" cy="7" r="1.4" fill="#e6b95c"/>
+    </pattern>
+    <pattern id="sk2" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#5e0b26"/>
+      <path d="M7 1 L13 7 L7 13 L1 7Z" fill="none" stroke="#e6b95c" stroke-width="1.1"/>
+      <path d="M7 4.5 L9.5 7 L7 9.5 L4.5 7Z" fill="#a855f7"/>
+    </pattern>
+  </defs>
+</svg>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="sky"><div class="stars"></div><div class="sun"></div><svg class="skyline" data-sky viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice"></svg><div class="floor"></div></div>
+  <div class="txt">
+    <div class="eyebrow rv">THE WEDDING OF</div>
+    <h1 class="rv d1"><span class="glitch" data-t="#EXActlyforALIFA">#EXActlyforALIFA</span></h1>
+    <div class="tag rv d2">Exactly where we belong.</div>
+    <div class="date rv d2">05 · 12 · 2026</div>
+    <a href="#invite" class="btn rv d3">[ OPEN INVITATION ]</a>
+  </div>
+  <div class="duo" id="heroDuo">
+    <div class="c idle" data-char="groom"></div>
+    <div class="c idle b" data-char="bride"></div>
+  </div>
+  <div class="scrollhint">SCROLL ▾</div>
+</section>
+<div class="band"></div>
+
+<!-- ============ INVITE ============ -->
+<section id="invite" class="pad sec-bg">
+  <div class="wrap center">
+    <div class="eyebrow rv">YOU’RE INVITED</div>
+    <h2 class="title rv d1" style="margin-top:16px">Save the Date</h2>
+    <p class="lead rv d1">With the blessings of Allah SWT,<br>we joyfully invite you to celebrate<br>the beginning of our forever.</p>
+    <div class="bigdate rv d2">Saturday, 5 December 2026</div>
+    <div class="cards">
+      <div class="card rv d1"><small>AKAD NIKAH</small><div class="t">08.00 AM</div></div>
+      <div class="card rv d2"><small>WEDDING RECEPTION</small><div class="t">11.00 AM – 03.00 PM</div></div>
+    </div>
+    <div class="venue rv d2"><small class="orb" style="font-size:11px;letter-spacing:.3em;color:var(--neon)">VENUE</small><b>Dharmein Hotel</b><span>Jakarta , Indonesia</span></div>
+    <div class="cd rv d3" id="cd"><div><b id="cdD">--</b><span>DAYS</span></div><div><b id="cdH">--</b><span>HRS</span></div><div><b id="cdM">--</b><span>MIN</span></div><div><b id="cdS">--</b><span>SEC</span></div></div>
+  </div>
+</section>
+<div class="band"></div>
+
+<!-- ============ COUPLE ============ -->
+<section id="couple" class="pad" style="background:radial-gradient(ellipse at 50% 30%,#2a0a4a,#0a0414 70%)">
+  <div class="wrap center">
+    <div class="eyebrow rv">THE BRIDE &amp; GROOM</div>
+    <h2 class="title rv d1" style="margin-top:16px">Two Hearts</h2>
+    <p class="lead rv d1">Two hearts, two families,<br>one beautiful beginning.</p>
+    <div class="grid">
+      <div class="person rv">
+        <div class="c tilt" data-char="bride" data-dir="1"></div><div class="stand"></div>
+        <div class="role">THE BRIDE</div>
+        <h3>Alifa Sayyidina Azzahra</h3>
+        <p>The First Daughter of<br><b>Mr. Gusti Iskandar</b> &amp; <b>Mrs. Helfa Syam</b></p>
+      </div>
+      <div class="person rv d2">
+        <div class="c tilt" data-char="groom" data-dir="-1"></div><div class="stand"></div>
+        <div class="role">THE GROOM</div>
+        <h3>Daniel Recksa Yudda</h3>
+        <p>The Beloved Son of<br><b>Mr. Yudi Daniel Agustin</b> &amp; <b>Mrs. Dedeh Wahidah</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="band"></div>
+
+<!-- ============ STORY (scroll animation) ============ -->
+<section id="story">
+  <div class="stage">
+    <div class="sky"><div class="stars"></div><div class="sun" id="stSun"></div><svg class="skyline" data-sky viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" id="stSky"></svg><div class="floor"></div></div>
+    <div class="beam" id="beam"></div>
+    <div class="ttl"><div class="orb">OUR LOVE STORY</div><div class="prog"><i id="prog"></i></div></div>
+    <div class="chap" id="chap">
+      <p><em>CHAPTER 01</em>Every love story has its own beautiful way of finding home.</p>
+      <p><em>CHAPTER 02</em>Some stories begin with a coincidence, while others feel like they were written long before two hearts ever met.</p>
+      <p><em>CHAPTER 03</em>Ours was a journey of laughter, love, lessons, and countless little moments that slowly became something extraordinary.</p>
+      <p><em>CHAPTER 04</em>Through every chapter, we learned that love is not about having a perfect story, but about finding someone worth choosing, again and again.</p>
+      <p><em>CHAPTER 05</em>And if we had to live this story all over again,<br>we would still choose each other.</p>
+      <p class="last glitch2">This is our forever.</p>
+    </div>
+    <div class="heart" id="heart"><svg viewBox="0 0 32 29"><path d="M16 28 C-6 12 4 -2 16 7 C28 -2 38 12 16 28Z" fill="#e879f9"/></svg></div>
+    <div class="pair" id="pair">
+      <div class="c" id="sg" data-char="groom"></div>
+      <div class="c" id="sb" data-char="bride"></div>
+    </div>
+  </div>
+</section>
+<div class="band"></div>
+
+<!-- ============ GIFT ============ -->
+<section id="gift" class="pad sec-bg">
+  <div class="wrap center">
+    <div class="eyebrow rv">WISHES &amp; GIFT</div>
+    <h2 class="title rv d1" style="margin-top:16px">Your Presence &amp; Prayers</h2>
+    <p class="lead rv d1">Your presence and prayers<br>are the most precious gifts to us.<br>For those who wish to send a wedding gift,<br>we would be grateful for your kindness.</p>
+    <div class="acct rv d2">
+      <dl><dt>BANK</dt><dd>[Bank Name]</dd><dt>ACCOUNT NAME</dt><dd>Daniel Recksa Yudda</dd><dt>ACCOUNT NO.</dt><dd class="no" id="acc">4080184056</dd></dl>
+      <button class="btn" id="copy">[ COPY ACCOUNT NUMBER ]</button>
+    </div>
+    <p class="lead rv d3" style="margin-top:28px;color:var(--dim)">Thank you for your love and generosity.</p>
+  </div>
+</section>
+<div class="band"></div>
+
+<!-- ============ END ============ -->
+<section id="end">
+  <div class="sky"><div class="stars"></div><div class="sun"></div><svg class="skyline" data-sky viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice"></svg><div class="floor"></div></div>
+  <div class="in center">
+    <div class="txt wrap">
+      <h2 class="title rv"><span class="glitch" data-t="We can’t wait to celebrate with you!">We can’t wait to celebrate with you!</span></h2>
+      <div class="sign rv d1">ALIFA &amp; DANIEL · 05 · 12 · 2026</div>
+      <div class="tag rv d2" style="margin-top:10px">#EXActlyforALIFA</div>
+    </div>
+    <div class="duo"><div class="c idle" data-char="groom"></div><div class="c idle b" data-char="bride"></div></div>
+  </div>
+</section>
+
+<div class="toast" id="toast">ACCOUNT NUMBER COPIED</div>
+
+<script>
+/* ================= CHARACTER SVGs (faceless, flat face) ================= */
+const GROOM = `
+<svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="100" cy="408" rx="64" ry="9" fill="#a855f7" opacity=".35"/>
+  <!-- legs -->
+  <rect x="76" y="268" width="22" height="126" rx="7" fill="url(#pants)" stroke="#a855f7" stroke-width="1"/>
+  <rect x="102" y="268" width="22" height="126" rx="7" fill="url(#pants)" stroke="#a855f7" stroke-width="1"/>
+  <path d="M68 396 Q86 386 98 394 L98 404 L66 404Z" fill="#0d0617" stroke="#c084fc" stroke-width="1"/>
+  <path d="M132 396 Q114 386 102 394 L102 404 L134 404Z" fill="#0d0617" stroke="#c084fc" stroke-width="1"/>
+  <!-- sampin (songket sarong) -->
+  <path d="M56 224 L144 224 L150 296 Q100 308 50 296Z" fill="url(#sk)" stroke="#e6b95c" stroke-width="1.5"/>
+  <path d="M56 224 L144 224 L144 236 L56 236Z" fill="url(#gold)" opacity=".9"/>
+  <!-- jacket -->
+  <path d="M62 130 Q100 112 138 130 L146 232 L54 232Z" fill="url(#jm)" stroke="#c084fc" stroke-width="1.2"/>
+  <path d="M100 118 L100 232" stroke="url(#gold)" stroke-width="2.4"/>
+  <g fill="url(#gold)"><circle cx="100" cy="150" r="3"/><circle cx="100" cy="174" r="3"/><circle cx="100" cy="198" r="3"/></g>
+  <path d="M82 120 L100 146 L118 120" fill="none" stroke="url(#gold)" stroke-width="2.4"/>
+  <path d="M54 232 L146 232" stroke="url(#gold)" stroke-width="3"/>
+  <!-- sleeves -->
+  <path d="M62 132 Q46 140 42 188 L38 250 L56 256 L72 190 Q74 150 74 136Z" fill="url(#jm2)" stroke="#c084fc" stroke-width="1.2"/>
+  <path d="M138 132 Q154 140 158 188 L162 250 L144 256 L128 190 Q126 150 126 136Z" fill="url(#jm2)" stroke="#c084fc" stroke-width="1.2"/>
+  <path d="M38 244 L56 250 M162 244 L144 250" stroke="url(#gold)" stroke-width="5"/>
+  <circle cx="47" cy="264" r="9" fill="url(#skin)"/><circle cx="153" cy="264" r="9" fill="url(#skin)"/>
+  <!-- neck + head (flat face) -->
+  <rect x="90" y="100" width="20" height="26" fill="#c68a5f"/>
+  <ellipse cx="100" cy="80" rx="25" ry="30" fill="url(#skin)"/>
+  <!-- deta / saluak (Minang headwear) -->
+  <path d="M73 72 Q72 42 100 40 Q128 42 127 72 Q118 60 100 60 Q82 60 73 72Z" fill="url(#jm)" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M80 44 Q96 12 134 26 Q132 46 114 46 Q98 42 80 44Z" fill="url(#jm)" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M96 30 Q112 22 126 30" fill="none" stroke="#a855f7" stroke-width="2"/>
+  <path d="M73 66 Q100 54 127 66" fill="none" stroke="url(#gold)" stroke-width="2.4"/>
+</svg>`;
+
+const BRIDE = `
+<svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="100" cy="408" rx="86" ry="9" fill="#a855f7" opacity=".35"/>
+  <!-- hijab back drape -->
+  <path d="M58 84 Q56 26 100 24 Q144 26 142 84 Q150 130 156 182 Q100 198 44 182 Q50 130 58 84Z" fill="url(#hj)" stroke="#c084fc" stroke-width="1.2"/>
+  <!-- gown skirt -->
+  <path d="M74 190 L126 190 L180 406 Q100 424 20 406Z" fill="url(#gown)" stroke="#c084fc" stroke-width="1.2"/>
+  <path d="M33 366 L167 366 L180 406 Q100 424 20 406Z" fill="url(#sk2)" stroke="#e6b95c" stroke-width="1.4"/>
+  <path d="M26 366 L174 366" stroke="url(#gold)" stroke-width="3"/>
+  <path d="M100 196 L100 366" stroke="#e6b95c" stroke-width="1" opacity=".5"/>
+  <!-- bodice + sash -->
+  <path d="M70 150 Q100 140 130 150 L128 198 L72 198Z" fill="url(#gown)" stroke="#c084fc" stroke-width="1.2"/>
+  <path d="M72 188 L128 188 L130 204 L70 204Z" fill="url(#gold)"/>
+  <path d="M82 150 L100 172 L118 150" fill="none" stroke="url(#gold)" stroke-width="2.2"/>
+  <!-- sleeves inward -->
+  <path d="M72 152 Q50 210 82 262 L96 254 Q72 208 86 160Z" fill="url(#jm2)" stroke="#c084fc" stroke-width="1.2"/>
+  <path d="M128 152 Q150 210 118 262 L104 254 Q128 208 114 160Z" fill="url(#jm2)" stroke="#c084fc" stroke-width="1.2"/>
+  <path d="M82 252 L96 260 M118 252 L104 260" stroke="url(#gold)" stroke-width="4.5"/>
+  <circle cx="90" cy="266" r="8" fill="url(#skin)"/><circle cx="110" cy="266" r="8" fill="url(#skin)"/>
+  <!-- bouquet (neon flowers) -->
+  <g>
+    <circle cx="100" cy="256" r="9" fill="#e879f9"/><circle cx="88" cy="250" r="7" fill="#a855f7"/><circle cx="112" cy="250" r="7" fill="#c084fc"/>
+    <circle cx="100" cy="246" r="6" fill="#f5d0fe"/><circle cx="100" cy="256" r="3" fill="url(#gold)"/>
+  </g>
+  <!-- face (flat) -->
+  <rect x="91" y="108" width="18" height="22" fill="#c68a5f"/>
+  <ellipse cx="100" cy="86" rx="22" ry="27" fill="url(#skin)"/>
+  <!-- hijab front: frame + chest drape -->
+  <path d="M66 92 Q62 32 100 30 Q138 32 134 92 Q130 60 100 56 Q70 60 66 92Z" fill="url(#hj2)" stroke="#c084fc" stroke-width="1"/>
+  <path d="M74 98 Q74 114 80 118 Q100 134 120 118 Q126 114 126 98 Q134 140 138 176 Q100 190 62 176 Q66 140 74 98Z" fill="url(#hj)" stroke="#c084fc" stroke-width="1"/>
+  <path d="M80 118 Q100 134 120 118" fill="none" stroke="#f0abfc" stroke-width="1.2" opacity=".7"/>
+  <!-- suntiang crown -->
+  <g stroke="url(#gold)" stroke-width="2.4" fill="url(#gold)" stroke-linecap="round">
+    <g transform="rotate(-72 100 40)"><path d="M100 40 L100 8" fill="none"/><circle cx="100" cy="8" r="3.6"/></g>
+    <g transform="rotate(-48 100 40)"><path d="M100 40 L100 2" fill="none"/><circle cx="100" cy="2" r="4"/></g>
+    <g transform="rotate(-24 100 40)"><path d="M100 40 L100 -2" fill="none"/><circle cx="100" cy="-2" r="4.4"/></g>
+    <g transform="rotate(0 100 40)"><path d="M100 40 L100 -6" fill="none"/><circle cx="100" cy="-6" r="5"/></g>
+    <g transform="rotate(24 100 40)"><path d="M100 40 L100 -2" fill="none"/><circle cx="100" cy="-2" r="4.4"/></g>
+    <g transform="rotate(48 100 40)"><path d="M100 40 L100 2" fill="none"/><circle cx="100" cy="2" r="4"/></g>
+    <g transform="rotate(72 100 40)"><path d="M100 40 L100 8" fill="none"/><circle cx="100" cy="8" r="3.6"/></g>
+    <path d="M70 52 Q100 40 130 52" fill="none" stroke-width="4"/>
+    <circle cx="100" cy="48" r="5" fill="#e879f9" stroke="none"/>
+  </g>
+</svg>`;
+
+const TPL = {groom:GROOM, bride:BRIDE};
+
+/* build 3D extruded characters (stacked layers in preserve-3d) */
+document.querySelectorAll('[data-char]').forEach(el=>{
+  const svg = TPL[el.dataset.char];
+  let h = '<div class="char3d">';
+  for(let i=6;i>=1;i--) h += `<div class="layer back" style="transform:translateZ(${-i*3.5}px)">${svg}</div>`;
+  h += `<div class="layer front">${svg}</div></div>`;
+  el.innerHTML = h;
+  el._c = el.firstElementChild;
+});
+
+/* ================= Cyberpunk Minang skyline ================= */
+function rng(seed){return()=> (seed=(seed*16807)%2147483647)/2147483647}
+const GONJONG = "M10 130 Q60 125 72 60 Q76 30 66 4 Q96 36 100 70 Q104 100 150 112 L250 112 Q296 100 300 70 Q304 36 334 4 Q324 30 328 60 Q340 125 390 130 L390 150 L10 150Z";
+document.querySelectorAll('[data-sky]').forEach((svg,k)=>{
+  const r = rng(77+k*13); let s='';
+  for(let x=-10;x<1210;){
+    const w=24+r()*30, h=50+r()*170;
+    if(x+w>360 && x<840){x+=w+4;continue}
+    s+=`<rect x="${x}" y="${300-h}" width="${w}" height="${h}" fill="#140727" stroke="#a855f7" stroke-opacity=".45"/>`;
+    for(let y=300-h+8;y<292;y+=12) for(let wx=x+5;wx<x+w-5;wx+=9) if(r()>.62) s+=`<rect x="${wx}" y="${y}" width="3.5" height="5" fill="${r()>.5?'#e879f9':'#c084fc'}" opacity=".85"/>`;
+    if(r()>.7) s+=`<rect x="${x+w/2-1}" y="${300-h-14}" width="2" height="14" fill="#e879f9"/>`;
+    x+=w+4;
+  }
+  // Rumah Gadang with gonjong horns (centre)
+  s+=`<g transform="translate(400 150)">
+    <path d="${GONJONG}" fill="#1c0838" stroke="#e879f9" stroke-width="2" style="filter:drop-shadow(0 0 8px #a855f7)"/>
+    <rect x="30" y="150" width="340" height="12" fill="#2a0a4a" stroke="#e6b95c" stroke-width="1.2"/>
+    <rect x="40" y="162" width="320" height="30" fill="url(#sk2)" opacity=".9"/>
+    <g fill="#1c0838" stroke="#a855f7"><rect x="46" y="162" width="10" height="138"/><rect x="120" y="162" width="10" height="138"/><rect x="190" y="162" width="10" height="138"/><rect x="270" y="162" width="10" height="138"/><rect x="344" y="162" width="10" height="138"/></g>
+    <rect x="130" y="192" width="140" height="40" fill="#e879f9" opacity=".12"/>
+  </g>`;
+  svg.innerHTML = s;
+});
+/* stars */
+document.querySelectorAll('.stars').forEach(st=>{
+  let h=''; for(let i=0;i<46;i++) h+=`<i style="left:${Math.random()*100}%;top:${Math.random()*55}%;animation-delay:${Math.random()*3}s"></i>`;
+  st.innerHTML=h;
+});
+
+/* ================= reveal on scroll ================= */
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in')}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* ================= scroll-driven animation ================= */
+const story = document.getElementById('story');
+const chap = [...document.querySelectorAll('#chap p')];
+const sg = document.getElementById('sg'), sb = document.getElementById('sb');
+const heart = document.getElementById('heart'), prog = document.getElementById('prog'), beam = document.getElementById('beam');
+const stSun = document.getElementById('stSun'), stSky = document.getElementById('stSky');
+const heroDuo = document.getElementById('heroDuo');
+const tilts = [...document.querySelectorAll('.tilt')];
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+let lastChap=-1, lastFl=0, ticking=false;
+
+function frame(){
+  ticking=false;
+  const vh=innerHeight, vw=innerWidth, sy=scrollY;
+
+  /* hero: characters rotate gently as you scroll away */
+  const hp = clamp(sy/vh,0,1);
+  const hc = heroDuo.querySelectorAll('.c');
+  hc[0]._c.style.setProperty('--ry', (-18+hp*40)+'deg');
+  hc[1]._c.style.setProperty('--ry', (18-hp*40)+'deg');
+
+  /* couple cards: turn toward viewer while passing the middle of the screen */
+  tilts.forEach(t=>{
+    const r=t.getBoundingClientRect(), m=(r.top+r.height/2-vh/2)/vh;
+    t._c.style.setProperty('--ry', (clamp(m,-1.2,1.2)*38*(+t.dataset.dir))+'deg');
+  });
+
+  /* story: sticky progress 0..1 */
+  const rect=story.getBoundingClientRect();
+  const total=story.offsetHeight-vh;
+  const p=clamp(-rect.top/total,0,1);
+  if(rect.top<vh && rect.bottom>0){
+    const m = clamp(p/0.84,0,1), e=ease(m);          // approach phase
+    const cw = sg.offsetWidth;
+    const far = Math.min(vw*.34, vw/2-cw*.5-8);
+    const near = cw*.47;                              // almost touching
+    const off = near + (far-near)*(1-e);
+    const walking = m<1;
+    const bob = walking? Math.abs(Math.sin(sy/38))*10 : 0;
+    const sway = walking? Math.sin(sy/38)*1.6 : 0;
+    const turn = 38*(1-e);                            // start side-on, finish facing each other
+    sg.style.transform=`translateX(calc(-50% - ${off}px)) translateY(${-bob}px) rotateZ(${sway}deg)`;
+    sb.style.transform=`translateX(calc(-50% + ${off}px)) translateY(${-(walking?Math.abs(Math.cos(sy/38))*10:0)}px) rotateZ(${-sway}deg)`;
+    sg._c.style.setProperty('--ry', (-turn+ (e>.9? 10*((e-.9)/.1):0))+'deg');
+    sb._c.style.setProperty('--ry', ( turn- (e>.9? 10*((e-.9)/.1):0))+'deg');
+    /* heart grows as they get close */
+    const hs = clamp((m-.35)/.65,0,1);
+    const beat = 1+Math.sin(performance.now()/180)*.08*hs;
+    heart.style.transform=`translateX(-50%) scale(${hs*1.5*beat})`;
+    beam.style.opacity = clamp((m-.5)/.5,0,1)*.9;
+    prog.style.width=(p*100)+'%';
+    /* parallax backdrop */
+    stSky.style.transform=`translateX(${(-p*60)}px) scale(${1+p*.08})`;
+    stSun.style.transform=`translateX(-50%) translateY(${p*40}px) scale(${1+p*.25})`;
+    /* chapters */
+    const idx=Math.min(chap.length-1,Math.floor(p*chap.length*0.999));
+    if(idx!==lastChap){chap.forEach((c,i)=>c.classList.toggle('on',i===idx));lastChap=idx}
+    /* floating hearts at the end */
+    if(p>.9 && performance.now()-lastFl>260){
+      lastFl=performance.now();
+      const f=document.createElement('div');f.className='fl';f.textContent=Math.random()>.5?'♥':'✦';
+      f.style.left=(vw/2+(Math.random()-.5)*Math.min(vw*.5,360))+'px';
+      document.querySelector('#story .stage').appendChild(f);setTimeout(()=>f.remove(),4000);
+    }
+  }
+}
+function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
+(function loop(){ if(innerHeight && story.getBoundingClientRect().top<innerHeight && story.getBoundingClientRect().bottom>0) frame(); requestAnimationFrame(loop)})();
+frame();
+
+/* ================= countdown (Akad: 5 Dec 2026, 08:00 WIB) ================= */
+const target = new Date('2026-12-05T08:00:00+07:00').getTime();
+function tick(){
+  let d=Math.max(0,target-Date.now());
+  const D=Math.floor(d/864e5);d%=864e5;const H=Math.floor(d/36e5);d%=36e5;const M=Math.floor(d/6e4);const S=Math.floor(d%6e4/1e3);
+  cdD.textContent=D;cdH.textContent=String(H).padStart(2,'0');cdM.textContent=String(M).padStart(2,'0');cdS.textContent=String(S).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+/* ================= copy account number ================= */
+document.getElementById('copy').addEventListener('click',async()=>{
+  const n=document.getElementById('acc').textContent.trim();
+  try{await navigator.clipboard.writeText(n)}catch(e){
+    const t=document.createElement('textarea');t.value=n;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();
+  }
+  const to=document.getElementById('toast');to.classList.add('show');setTimeout(()=>to.classList.remove('show'),2000);
+});
+</script>
+</body>
+</html>
