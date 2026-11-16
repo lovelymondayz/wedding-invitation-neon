@@ -487,7 +487,7 @@ addEventListener('scroll',barTick,{passive:true});barTick();
 /* ================= hero mouse parallax ================= */
 const heroSun=document.getElementById('heroSun'), heroSky=document.getElementById('heroSky');
 let mx=0,my=0;
-if(!reduce) addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2},{passive:true});
+if(!reduce) addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;req()},{passive:true});
 
 /* ================= shooting stars + neon particles ================= */
 document.querySelectorAll('.sky').forEach(scope=>{
