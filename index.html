@@ -201,6 +201,18 @@ h2.title{font-size:clamp(22px,5vw,42px);font-weight:700;margin-bottom:18px;color
 .rv.in{opacity:1;transform:none;filter:none}
 .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+/* ============ background music toggle ============ */
+#musicToggle{
+  position:fixed; bottom:22px; right:22px; z-index:99999;
+  width:46px; height:46px; border-radius:50%;
+  border:1px solid rgba(192,132,252,.5); background:rgba(124,58,237,.16);
+  color:#fff; font-size:22px; cursor:pointer; line-height:1;
+  box-shadow:0 0 20px rgba(168,85,247,.4); transition:.25s;
+  display:flex; align-items:center; justify-content:center;
+}
+#musicToggle:hover{transform:scale(1.12); box-shadow:0 0 34px rgba(168,85,247,.85)}
+#musicToggle.on{background:rgba(168,85,247,.38); border-color:var(--neon); box-shadow:0 0 34px rgba(168,85,247,.9)}
+#musicToggle:active{transform:scale(.94)}
 </style>
 </head>
 <body>
@@ -624,6 +636,34 @@ document.getElementById('copy').addEventListener('click',async()=>{
   }
   const to=document.getElementById('toast');to.classList.add('show');setTimeout(()=>to.classList.remove('show'),2000);
 });
+  /* ============ background music (loop + toggle) ============ */
+  (function(){
+    var music = document.createElement('audio');
+    music.id = 'bgMusic';
+    music.src = 'backsound.wav';
+    music.loop = true;
+    music.preload = 'auto';
+    music.volume = 0.35;
+    document.body.appendChild(music);
+
+    var mBtn = document.createElement('button');
+    mBtn.id = 'musicToggle';
+    mBtn.textContent = '♪';
+    mBtn.setAttribute('title','Toggle background music');
+    mBtn.setAttribute('aria-label','Toggle background music');
+    mBtn.addEventListener('click', function(){
+      if(music.paused){
+        music.play().then(function(){ mBtn.classList.add('on'); mBtn.textContent = 'stop'; })
+          .catch(function(){});
+      } else {
+        music.pause();
+        mBtn.classList.remove('on');
+        mBtn.textContent = '♪';
+      }
+    });
+    document.body.appendChild(mBtn);
+  })();
 </script>
+<button id="musicToggle" title="Toggle background music" aria-label="Toggle background music">&#9835;</button>
 </body>
 </html>
