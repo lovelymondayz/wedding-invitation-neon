@@ -213,6 +213,45 @@ h2.title{font-size:clamp(22px,5vw,42px);font-weight:700;margin-bottom:18px;color
 #musicToggle:hover{transform:scale(1.12); box-shadow:0 0 34px rgba(168,85,247,.85)}
 #musicToggle.on{background:rgba(168,85,247,.38); border-color:var(--neon); box-shadow:0 0 34px rgba(168,85,247,.9)}
 #musicToggle:active{transform:scale(.94)}
+/* ============ guest invite (Option A, static single HTML) ============ */
+#guestAdmin{
+  position:fixed; inset:0; z-index:90000;
+  background:rgba(8,3,15,.72); display:none; align-items:center; justify-content:center; padding:24px;
+}
+#guestAdmin.show{ display:flex; }
+#guestAdmin .wrap{
+  width:100%; max-width:560px; background:#12061f; border:1px solid var(--neon);
+  border-radius:10px; padding:26px; color:#fff;
+}
+#guestAdmin .wrap h1{ font-family:'Orbitron'; font-size:24px; margin-bottom:4px; }
+#guestAdmin .wrap .sub{ color:var(--dim); font-size:15px; margin-bottom:18px; line-height:1.5; }
+#guestAdmin input{ flex:1; padding:12px; border:1px solid var(--gold); border-radius:6px; background:#0a0414; color:#fff; font-size:17px; }
+#guestAdmin input:focus{ outline:none; border-color:var(--neon); }
+#guestAdmin .addRow{ display:flex; gap:10px; margin-top:12px; }
+#guestAdmin .addRow > *{ flex:1; }
+#guestAdmin button{ margin-top:10px; }
+#guestAdmin .hint{ color:var(--dim); font-size:13px; margin-top:14px; line-height:1.6; }
+#guestList{ list-style:none; padding:0; margin-top:14px; }
+#guestList li{ display:flex; justify-content:space-between; gap:10px; align-items:center; flex-wrap:wrap; padding:11px 13px; border:1px solid var(--gold); border-radius:6px; background:#0a0414; margin-top:8px; font-size:15px; }
+#guestList .who{ font-weight:600; }
+#guestList .who small{ color:var(--dim); font-weight:400; margin-left:4px; }
+#guestList .link{ color:var(--neon); word-break:break-all; font-size:13px; user-select:all; flex:1; min-width:0; }
+#guestList .copyBtn{ flex-shrink:0; padding:6px 12px; font-size:12px; letter-spacing:.1em; background:rgba(168,85,247,.15); border:1px solid var(--neon); color:#fff; border-radius:4px; cursor:pointer; }
+#guestList .copyBtn:hover{ background:rgba(168,85,247,.3); }
+#guestPopup{
+  position:fixed; inset:0; z-index:99999; background:rgba(8,3,15,.68);
+  display:none; align-items:center; justify-content:center; padding:24px;
+}
+#guestPopup.show{ display:flex; }
+#guestPopup .box{
+  background:#12061f; border:1px solid var(--neon); border-radius:10px;
+  padding:30px 26px; text-align:center; max-width:460px; color:#fff; box-shadow:0 0 40px rgba(168,85,247,.4);
+}
+#guestPopup .orb{ color:var(--neon); font-family:'Orbitron'; letter-spacing:.3em; font-size:12px; }
+#guestPopup .name{ color:#fff; font-family:'Orbitron'; font-size:32px; margin:12px 0 6px; }
+#guestPopup .invite{ color:var(--dim); margin-top:8px; line-height:1.5; font-size:17px; }
+#guestPopup .closeBtn{ margin-top:16px; padding:10px 20px; border:1px solid var(--neon); background:rgba(168,85,247,.18); color:#fff; font-family:'Orbitron'; font-size:13px; letter-spacing:.1em; border-radius:2px; cursor:pointer; }
+#guestPopup .closeBtn:hover{ background:rgba(168,85,247,.35); }
 </style>
 </head>
 <body>
@@ -438,7 +477,11 @@ const BRIDE = `
 const TPL = {groom:GROOM, bride:BRIDE};
 
 /* build 3D extruded characters (stacked layers in preserve-3d) */
-document.querySelectorAll('[data-char]').forEach(el=>{
+function isWeddingPath(){
+  var p = location.pathname;
+  return p === '/' || p.indexOf('/invite/') === 0;
+}
+function initWedding(){document.querySelectorAll('[data-char]').forEach(el=>{
   const svg = TPL[el.dataset.char];
   let h = '<div class="char3d">';
   for(let i=6;i>=1;i--) h += `<div class="layer back" style="transform:translateZ(${-i*3.5}px)">${svg}</div>`;
@@ -636,7 +679,83 @@ document.getElementById('copy').addEventListener('click',async()=>{
   }
   const to=document.getElementById('toast');to.classList.add('show');setTimeout(()=>to.classList.remove('show'),2000);
 });
-  /* ============ background music (loop + toggle) ============ */
+  }
+(() => {
+  const GUESTS = Object.create(null);
+
+  const slugify = (str) => String(str).toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+    .slice(0, 40);
+
+  const $guestName = document.getElementById('guestName');
+  const $guestList = document.getElementById('guestList');
+  const $guestAdd = document.getElementById('guestAdd');
+  const $guestPopup = document.getElementById('guestPopup');
+  const $guestPopupName = document.getElementById('guestPopupName');
+  const $guestPopupInvite = document.getElementById('guestPopupInvite');
+
+  function renderList(){
+    $guestList.innerHTML = '';
+    Object.keys(GUESTS).forEach(slug => {
+      const g = GUESTS[slug];
+      const li = document.createElement('li');
+      const who = document.createElement('div');
+      who.className = 'who';
+      who.innerHTML = g.name + ' <small>/invite/' + slug + '</small>';
+      const link = document.createElement('a');
+      link.className = 'link';
+      link.href = location.origin + '/invite/' + slug;
+      link.textContent = location.origin + '/invite/' + slug;
+      const copy = document.createElement('button');
+      copy.className = 'copyBtn';
+      copy.textContent = 'copy';
+      copy.addEventListener('click', () => {
+        navigator.clipboard.writeText(link.href).then(() => {
+          copy.textContent = 'copied';
+          setTimeout(() => copy.textContent = 'copy', 1500);
+        });
+      });
+      li.appendChild(who); li.appendChild(link); li.appendChild(copy);
+      $guestList.appendChild(li);
+    });
+  }
+
+  $guestAdd.addEventListener('click', () => {
+    const name = $guestName.value.trim();
+    if (!name){ $guestName.focus(); return; }
+    const slug = slugify(name);
+    if (GUESTS[slug]){ alert('Already added: ' + name); return; }
+    GUESTS[slug] = { name, invite: 'Welcome, ' + name + '! So glad you are here.' };
+    $guestName.value = '';
+    $guestName.focus();
+    renderList();
+  });
+
+  const match = location.pathname.match(/^\/invite\/([^/]+)\/?$/);
+  if (match){
+    const slug = match[1];
+    const g = GUESTS[slug] || null;
+    if (g){
+      $guestPopupName.textContent = g.name;
+      $guestPopupInvite.textContent = g.invite;
+    } else {
+      $guestPopupName.textContent = 'You are invited';
+      $guestPopupInvite.textContent = 'You\'re invited to join us — we would love to see you there.';
+    }
+    $guestPopup.classList.add('show');
+  } else {
+    if (location.pathname === '/invite-guest'){
+      document.getElementById('guestAdmin').classList.add('show');
+    }
+  }
+
+  document.getElementById('guestPopupClose').addEventListener('click', () => {
+    $guestPopup.classList.remove('show');
+  });
+})();
+if (isWeddingPath()){ initWedding(); }
+/* ============ background music (loop + toggle) ============ */
   (function(){
     var music = document.createElement('audio');
     music.id = 'bgMusic';
@@ -644,26 +763,69 @@ document.getElementById('copy').addEventListener('click',async()=>{
     music.loop = true;
     music.preload = 'auto';
     music.volume = 0.35;
+    music.muted = true; // bypass browser autoplay policy until the first tap
     document.body.appendChild(music);
 
     var mBtn = document.createElement('button');
     mBtn.id = 'musicToggle';
-    mBtn.textContent = '♪';
+    mBtn.textContent = 'Play';
     mBtn.setAttribute('title','Toggle background music');
     mBtn.setAttribute('aria-label','Toggle background music');
     mBtn.addEventListener('click', function(){
+      if(!firstStartHandled){
+        // the first tap already unmuted + started the song; ignore this click
+        return;
+      }
       if(music.paused){
-        music.play().then(function(){ mBtn.classList.add('on'); mBtn.textContent = 'stop'; })
-          .catch(function(){});
+        music.muted = false;
+        music.play().then(function(){ mBtn.classList.add('on'); mBtn.textContent = 'Pause'; })
+          .catch(function(){ mBtn.textContent = 'Play'; });
       } else {
         music.pause();
         mBtn.classList.remove('on');
-        mBtn.textContent = '♪';
+        mBtn.textContent = 'Play';
       }
     });
     document.body.appendChild(mBtn);
+
+    // auto-start: browsers block sound until a gesture, so the first tap anywhere
+    // unmutes and begins playback. After that the speaker button acts as Play/Pause.
+    (function(){
+      var firstStartHandled = false;
+      function firstTap(){
+        if (firstStartHandled) return;
+        firstStartHandled = true;
+        music.muted = false;
+        music.play().then(function(){ mBtn.textContent = 'Pause'; mBtn.classList.add('on'); })
+          .catch(function(){ mBtn.textContent = 'Play'; });
+      }
+      document.addEventListener('click', firstTap, { once: true });
+      document.addEventListener('touchstart', firstTap, { once: true });
+    })();
   })();
 </script>
+<div id="guestAdmin">
+  <div class="wrap">
+    <h1>Manage Invite Links</h1>
+    <p class="sub">Add a guest one by one. Each gets a unique link like <code style="color:var(--neon)">/invite/mr-jackson</code> that opens with their name.</p>
+    <div class="addRow">
+      <input id="guestName" placeholder="Guest name (e.g. Mr Jackson)" maxlength="40">
+      <button id="guestAdd" class="btn" style="margin-top:0">Add guest</button>
+    </div>
+    <ul id="guestList"></ul>
+    <p class="hint">Guests are stored in <code style="color:var(--neon)">index.html</code>. For a link to really resolve, add the guest then redeploy (see README).</p>
+  </div>
+</div>
+
+<div id="guestPopup">
+  <div class="box">
+    <div class="orb">INVITATION</div>
+    <div id="guestPopupName" class="name"></div>
+    <div id="guestPopupInvite" class="invite"></div>
+    <button id="guestPopupClose" class="closeBtn">Got it</button>
+  </div>
+</div>
+
 <button id="musicToggle" title="Toggle background music" aria-label="Toggle background music">&#9835;</button>
 </body>
 </html>
